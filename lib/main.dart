@@ -6,7 +6,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key}) : super(key: key);
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  String _button_title="button 0";
+  int _count=0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
         body: Column(
             children: <Widget>[
               Text(
@@ -31,8 +52,14 @@ class MyApp extends StatelessWidget {
                 'Text 1',
               ),
 
-              Text(
-                'Text 2',
+              FlatButton(
+                onPressed: () {
+                  _count++;
+                  _button_title = "button $_count";
+                  setState(() {
+                  });
+                },
+                child: Text(_button_title),
               ),
 
               Row(
@@ -57,7 +84,8 @@ class MyApp extends StatelessWidget {
               ),
             ],
           ),
-        ),
+
     );
   }
 }
+
