@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'screen.dart';
+import 'row.dart';
+import 'counter.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print('********** class MyApp build()');
     return MaterialApp(
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -21,70 +25,54 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String _button_title="button 0";
-  int _count=0;
-
   @override
   Widget build(BuildContext context) {
+    print('********** class _MyHomePageState build()');
     return Scaffold(
+      appBar: AppBar(
+        title: Text('MyHome Bar'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
 
-        body: Column(
-            children: <Widget>[
-              Text(
-                'Text 0',
-              ),
+            FlatButton(
+              child: Text('MyScreen Button'),
+              onPressed: () {
+                print('********** class _MyHomePageState FlatButton: MyScreen Button');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyScreen()),
+                );
+              },
+            ),
 
-              Row(
-                  children: <Widget>[
-                    Text(
-                      'Text A ',
-                    ),
-                    Text(
-                      'Text B ',
-                    ),
-                    Text(
-                      'Text C ',
-                    ),
-                  ]
-              ),
+            FlatButton(
+              child: Text('MyRow Button'),
+              onPressed: () {
+                print('********** class _MyHomePageState FlatButton: MyRow Button');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyRow()),
+                );
+              },
+            ),
 
-              Text(
-                'Text 1',
-              ),
+            FlatButton(
+              child: Text('MyCounter Button'),
+              onPressed: () {
+                print('********** class _MyHomePageState FlatButton: MyCounter Button');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyCounter()),
+                );
+              },
+            ),
 
-              FlatButton(
-                onPressed: () {
-                  _count++;
-                  _button_title = "button $_count";
-                  setState(() {
-                  });
-                },
-                child: Text(_button_title),
-              ),
-
-              Row(
-                children: <Widget>[
-                  Text(
-                    'Text a ',
-                  ),
-                  Text(
-                    'Text b ',
-                  ),
-                  Text(
-                    'Text c ',
-                  ),
-                  Text(
-                    'Text d ',
-                  ),
-                ]
-              ),
-
-              Text(
-                'Text 3',
-              ),
-            ],
-          ),
-
+          ],
+        ),
+      ),
     );
   }
 }
