@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'delay.dart';
+import 'handler.dart';
 import 'screen.dart';
 import 'row.dart';
 import 'counter.dart';
+
 
 void main() => runApp(MyApp());
 
@@ -70,10 +73,36 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
 
+            FlatButton(
+              child: Text('MyDelay(1) Button'),
+              onPressed: () {
+                print('********** class _MyHomePageState FlatButton: MyDelay Button start ${new DateTime.now()}');
+                MyDelay.delay1();
+                print('********** class _MyHomePageState FlatButton: MyDelay Button end ${new DateTime.now()}');
+              },
+            ),
+
+            FlatButton(
+              child: Text('MyDelay(2) Button'),
+              onPressed: () {
+                MyDelay.delay2();
+              },
+            ),
+
+            FlatButton(
+              child: Text('MyHandler Button'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyHandler()),
+                );
+              },
+            ),
           ],
         ),
       ),
     );
   }
+
 }
 
