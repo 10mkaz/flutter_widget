@@ -1,0 +1,49 @@
+https://qiita.com/ysknsn/items/76c6326c74dc9059ff20
+
+■
+Future<String> _getFutureValue() async {
+  // 擬似的に通信中を表現するために１秒遅らせる
+  await Future.delayed(
+    Duration(seconds: 1),
+  );
+
+  try {
+    // 処理
+  } catch (error) {
+    return Future.error(error);
+  }
+  return Future.value("データの取得に成功しました");
+}
+
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text('FutureBuilder Demo'),
+    ),
+    body: Center(
+      child: FutureBuilder(
+        future: _getFutureValue(),
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+          // 通信中はスピナーを表示
+          if (snapshot.connectionState != ConnectionState.done) {
+            return CircularProgressIndicator();
+          }
+
+          // エラー発生時はエラーメッセージを表示
+          if (snapshot.hasError) {
+            return Text(snapshot.error.toString());
+          }
+
+          // データがnullでないかチェック
+          if (snapshot.hasData) {
+            return Text(snapshot.data);
+          } else {
+            return Text("データが存在しません");
+          }
+        },
+      ),
+    ),
+  );
+}
+

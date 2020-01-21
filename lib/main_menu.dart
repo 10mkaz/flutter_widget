@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget/_any_test.dart';
+import 'package:flutter_widget/progress.dart';
 import 'package:flutter_widget/row.dart';
 import 'package:flutter_widget/screen.dart';
 import 'package:flutter_widget/yield.dart';
@@ -91,6 +92,16 @@ class _MainMenuState extends State<MainMenu> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => YieldTest()),
+                );
+              },
+            ),
+
+            FlatButton(
+              child: Text('Progress test'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProgressTest()),
                 );
               },
             ),
